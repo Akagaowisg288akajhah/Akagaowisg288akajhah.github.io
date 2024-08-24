@@ -12,46 +12,69 @@
             justify-content: center;
             height: 100vh;
             margin: 0;
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to bottom, #f0f4f7, #ffffff);
+            position: relative;
+            overflow: hidden;
         }
 
-        img {
-            max-width: 100%;
-            height: auto;
-            margin-bottom: 20px;
+        img.top-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            max-height: 150px;
+            object-fit: cover;
+            z-index: 1;
+        }
+
+        img.bottom-image {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            max-height: 150px;
+            object-fit: cover;
+            z-index: 1;
         }
 
         .box {
-            border: 1px solid #ccc;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            width: 300px;
+            background-color: white;
+            border: 1px solid #e0e0e0;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+            width: 320px;
             text-align: center;
             display: flex;
             flex-direction: column;
+            z-index: 2;
         }
 
-        input[type="text"] {
+        input[type="text"], input[type="number"] {
             width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 16px;
         }
 
         button {
-            padding: 10px;
+            padding: 12px;
             border: none;
-            background-color: #28a745;
+            background-color: #007bff;
             color: white;
-            border-radius: 4px;
+            border-radius: 8px;
             cursor: pointer;
             margin-top: 10px;
+            font-size: 16px;
+            transition: background-color 0.3s;
         }
 
         button:hover {
-            background-color: #218838;
+            background-color: #0056b3;
         }
 
         .loading {
@@ -63,8 +86,8 @@
             border: 4px solid #f3f3f3;
             border-top: 4px solid #007bff;
             border-radius: 50%;
-            width: 30px;
-            height: 30px;
+            width: 40px;
+            height: 40px;
             animation: spin 1s linear infinite;
         }
 
@@ -77,15 +100,25 @@
             display: none;
             margin-top: 20px;
             color: #28a745;
+            font-size: 18px;
+        }
+
+        .success button {
+            background-color: #28a745;
+        }
+
+        .success button:hover {
+            background-color: #218838;
         }
     </style>
 </head>
 <body>
 
-    <img src="1.jpg" alt="Top Image">
+    <img src="1.jpg" alt="Top Image" class="top-image">
 
     <div class="box" id="infoBox">
         <input type="text" id="username" placeholder="Enter Username">
+        <input type="number" id="phone" placeholder="Enter Phone Number">
         <input type="text" id="address" placeholder="Enter Address">
         <button onclick="updateInfo()">Update</button>
     </div>
@@ -99,7 +132,7 @@
         <button onclick="reloadForm()">Okay</button>
     </div>
 
-    <img src="2.jpg" alt="Down Image">
+    <img src="2.jpg" alt="Bottom Image" class="bottom-image">
 
     <script>
         function updateInfo() {
@@ -121,10 +154,11 @@
             document.getElementById('successMessage').style.display = 'none';
             document.getElementById('infoBox').style.display = 'block';
             document.getElementById('username').value = '';
+            document.getElementById('phone').value = '';
             document.getElementById('address').value = '';
         }
     </script>
 
 </body>
-</html>
-      
+            </html>
+    
